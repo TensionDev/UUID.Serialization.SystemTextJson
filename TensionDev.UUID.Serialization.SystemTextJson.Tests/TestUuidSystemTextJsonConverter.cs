@@ -40,7 +40,59 @@ namespace TensionDev.UUID.Serialization.SystemTextJson.Tests
         }
 
         [Fact]
-        public void TestRead()
+        public void TestReadNotString()
+        {
+            // Arrange
+            // Use a canonical all-zero UUID representation which is commonly accepted by UUID parsers.
+            const string input = "00000000-0000-0000-0000-000000000000";
+            string jsonText = "0";
+            byte[] json = Encoding.UTF8.GetBytes(jsonText);
+            var reader = new Utf8JsonReader(json);
+            reader.Read();
+
+            // Act
+            JsonException ex = null;
+            try
+            {
+                _converter.Read(ref reader, typeof(Uuid), new JsonSerializerOptions());
+            }
+            catch (JsonException caught)
+            {
+                ex = caught;
+            }
+
+            // Assert
+            Assert.NotNull(ex);
+        }
+
+        [Fact]
+        public void TestReadEmptyString()
+        {
+            // Arrange
+            // Use a canonical all-zero UUID representation which is commonly accepted by UUID parsers.
+            const string input = "00000000-0000-0000-0000-000000000000";
+            string jsonText = "\"\"";
+            byte[] json = Encoding.UTF8.GetBytes(jsonText);
+            var reader = new Utf8JsonReader(json);
+            reader.Read();
+
+            // Act
+            JsonException ex = null;
+            try
+            {
+                _converter.Read(ref reader, typeof(Uuid), new JsonSerializerOptions());
+            }
+            catch (JsonException caught)
+            {
+                ex = caught;
+            }
+
+            // Assert
+            Assert.NotNull(ex);
+        }
+
+        [Fact]
+        public void TestReadString()
         {
             // Arrange
             // Use a canonical all-zero UUID representation which is commonly accepted by UUID parsers.
