@@ -1,8 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net461;netstandard2.0;netcoreapp3.1</TargetFrameworks>
+    <AssemblyName>TensionDev.UUID.Serialization.SystemTextJson</AssemblyName>
+    <RootNamespace>TensionDev.UUID.Serialization.SystemTextJson</RootNamespace>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>TensionDev.UUID.Serialization.SystemTextJson</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>TensionDev amsga</Authors>
+    <Company>TensionDev</Company>
+    <Product>TensionDev.UUID.Serialization.SystemTextJson</Product>
+    <Description>TensionDev.UUID.Serialization.SystemTextJson is a .NET library that serializes TensionDev.Uuid objects into JSON.</Description>
+    <Copyright>Copyright (c) TensionDev 2026</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/TensionDev/UUID.Serialization.SystemTextJson</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TensionDev/UUID.Serialization.SystemTextJson</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>UUID GUID JSON</PackageTags>
+    <PackageReleaseNotes>Initial Release.</PackageReleaseNotes>
+    <NeutralLanguage>en-SG</NeutralLanguage>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="TensionDev.UUID" Version="1.0.0" />
+  </ItemGroup>
 
 </Project>
