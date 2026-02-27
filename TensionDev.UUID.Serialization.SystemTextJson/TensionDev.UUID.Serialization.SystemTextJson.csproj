@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>TensionDev.UUID.Serialization.SystemTextJson</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>TensionDev amsga</Authors>
     <Company>TensionDev</Company>
     <Product>TensionDev.UUID.Serialization.SystemTextJson</Product>
@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
-    <PackageReference Include="TensionDev.UUID" Version="1.0.0" />
+    <PackageReference Include="TensionDev.UUID" Version="1.1.0" />
   </ItemGroup>
 
 </Project>
