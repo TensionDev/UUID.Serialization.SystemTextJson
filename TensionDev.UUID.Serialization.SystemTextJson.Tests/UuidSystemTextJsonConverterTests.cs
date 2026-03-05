@@ -7,26 +7,34 @@ using Xunit;
 
 namespace TensionDev.UUID.Serialization.SystemTextJson.Tests
 {
-    public class TestUuidSystemTextJsonConverter : IDisposable
+    public class UuidSystemTextJsonConverterTests : IDisposable
     {
         private bool disposedValue;
 
         private readonly UuidSystemTextJsonConverter _converter;
 
-        public TestUuidSystemTextJsonConverter()
+        public UuidSystemTextJsonConverterTests()
         {
             _converter = new UuidSystemTextJsonConverter();
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void TestWrite(bool useNullOptions)
+        [InlineData(true, "00000000-0000-0000-0000-000000000000")]
+        [InlineData(true, "ffffffff-ffff-ffff-ffff-ffffffffffff")]
+        [InlineData(true, "164a714c-0c79-11ec-82a8-0242ac130003")]
+        [InlineData(true, "550e8400-e29b-41d4-a716-446655440000")]
+        [InlineData(true, "1bf6935b-49e6-54cf-a9c8-51fb21c41b46")]
+        [InlineData(false, "00000000-0000-0000-0000-000000000000")]
+        [InlineData(false, "ffffffff-ffff-ffff-ffff-ffffffffffff")]
+        [InlineData(false, "164a714c-0c79-11ec-82a8-0242ac130003")]
+        [InlineData(false, "550e8400-e29b-41d4-a716-446655440000")]
+        [InlineData(false, "1bf6935b-49e6-54cf-a9c8-51fb21c41b46")]
+        public void TestWrite(bool useNullOptions, string input)
         {
             // Arrange
             using var ms = new MemoryStream();
             using var writer = new Utf8JsonWriter(ms);
-            Uuid value = new Uuid();
+            Uuid value = Uuid.Parse(input);
             JsonSerializerOptions? options = useNullOptions ? null : new JsonSerializerOptions();
 
             // Act
@@ -91,12 +99,15 @@ namespace TensionDev.UUID.Serialization.SystemTextJson.Tests
             Assert.NotNull(ex);
         }
 
-        [Fact]
-        public void TestReadString()
+        [Theory]
+        [InlineData("00000000-0000-0000-0000-000000000000")]
+        [InlineData("ffffffff-ffff-ffff-ffff-ffffffffffff")]
+        [InlineData("164a714c-0c79-11ec-82a8-0242ac130003")]
+        [InlineData("550e8400-e29b-41d4-a716-446655440000")]
+        [InlineData("1bf6935b-49e6-54cf-a9c8-51fb21c41b46")]
+        public void TestReadString(string input)
         {
             // Arrange
-            // Use a canonical all-zero UUID representation which is commonly accepted by UUID parsers.
-            const string input = "00000000-0000-0000-0000-000000000000";
             string jsonText = "\"" + input + "\"";
             byte[] json = Encoding.UTF8.GetBytes(jsonText);
             var reader = new Utf8JsonReader(json);
@@ -126,7 +137,7 @@ namespace TensionDev.UUID.Serialization.SystemTextJson.Tests
         }
 
         // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~TestUuidSystemTextJsonConverter()
+        // ~UuidSystemTextJsonConverterTests()
         // {
         //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         //     Dispose(disposing: false);

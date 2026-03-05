@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.1.0] - 2026-03-05
+[v2.1.0](https://github.com/TensionDev/UUID.Serialization.SystemTextJson/releases/tag/v2.1.0)
+
+### Changed
+- Changed to reference TensionDev.UUID v2.1.0.
+
+
 ## [v2.0.0] - 2026-03-04
 [v2.0.0](https://github.com/TensionDev/UUID.Serialization.SystemTextJson/releases/tag/v2.0.0)
 
